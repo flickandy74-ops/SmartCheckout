@@ -1,0 +1,119 @@
+<div class="checkout-panel" [class.hidden-panel]="showConfirmation">
+
+  <header class="panel-head">
+    <h2>AI Checkout Copilot</h2>
+    <span class="ai-badge">AI ACTIVE</span>
+  </header>
+
+  <app-checkout-steps />
+
+  <div *ngIf="showToast" class="toast">Added to cart</div>
+
+  <div
+    *ngIf="contextLabel && cartItems.length > 0"
+    class="context-banner"
+  >
+    <span class="context-label">Smart context</span>
+    <p class="context-text">
+      From <strong>{{ contextLabel }}</strong>
+      <span class="context-promise">— no repeat questions.</span>
+    </p>
+  </div>
+
+  <div class="panel-body" *ngIf="cartItems.length > 0">
+    <div class="compact-blocks ai-showcase">
+      <app-cart-summary
+        [cartItems]="cartItems"
+        [total]="getTotalPrice()"
+        [savings]="insights?.savings ?? 0"
+        (remove)="removeItem($event)"
+      />
+
+      <section *ngIf="insightsLoading" class="mini-loading showcase-loading">
+        AI analyzing your cart…
+      </section>
+
+      <div *ngIf="insights && !insightsLoading" class="ai-feature-stack">
+        <p class="showcase-eyebrow">AI-powered checkout</p>
+
+        <section class="ai-insights">
+          <h3>AI Insights</h3>
+          <div class="insight-row">
+            <span class="insight-chip insight-savings">💰 ₹{{ insights.savings }} saved</span>
+            <span class="insight-chip">💳 {{ insights.recommendedPayment }}</span>
+            <span class="insight-chip">🚚 {{ insights.estimatedDelivery }}</span>
+            <span class="insight-chip">🧠 {{ insights.aiScore }}% score</span>
+          </div>
+          <div class="score-bar">
+            <div class="score-fill" [style.width.%]="insights.aiScore"></div>
+          </div>
+        </section>
+
+        <app-checkout-comparison
+          class="feature-comparison"
+          [savings]="insights.savings"
+          [aiScore]="insights.aiScore"
+        />
+      </div>
+
+    </div>
+
+    <button
+      type="button"
+      class="ask-ai-btn"
+      (click)="openAskAi()"
+      [disabled]="insightsLoading"
+    >
+      <span class="ask-ai-icon">✨</span>
+      SmartCheckout Copilot
+    </button>
+  </div>
+
+  <div *ngIf="cartItems.length === 0" class="empty-panel">
+    <p>Your cart is empty — add products to start AI checkout.</p>
+  </div>
+
+  <button
+    *ngIf="cartItems.length > 0"
+    type="button"
+    class="pay-cta"
+    (click)="openPayment()"
+  >
+    Proceed to Payment →
+  </button>
+
+  <p *ngIf="checkoutError" class="checkout-error">{{ checkoutError }}</p>
+</div>
+
+<div
+  class="ask-ai-overlay"
+  *ngIf="askAiModalOpen"
+  (click)="closeAskAi()"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="ask-ai-modal-title"
+>
+  <div class="ask-ai-modal" (click)="$event.stopPropagation()">
+    <header class="ask-ai-modal-head">
+      <h2 id="ask-ai-modal-title">SmartCheckout Copilot</h2>
+      <button type="button" class="ask-ai-close" (click)="closeAskAi()" aria-label="Close SmartCheckout Copilot">×</button>
+    </header>
+    <app-ai-copilot-chat
+      [cartItems]="cartItems"
+      [totalAmount]="getTotalPrice()"
+      [insights]="insights"
+      [disabled]="insightsLoading"
+      [expanded]="true"
+      [inModal]="true"
+      [active]="askAiModalOpen"
+    />
+  </div>
+</div>
+
+<app-payment-modal
+  [open]="paymentModalOpen"
+  [total]="getTotalPrice()"
+  [insights]="insights"
+  (closed)="onPaymentModalClose()"
+  (paid)="onPaymentComplete($event)"
+/>

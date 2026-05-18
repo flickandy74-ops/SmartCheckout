@@ -1,0 +1,40 @@
+<div class="ai-panel">
+
+  <div class="top">
+
+    <h2>AI Checkout Copilot</h2>
+
+    <span class="badge">
+      AI ACTIVE
+    </span>
+
+  </div>
+
+  <div class="insight">
+
+    <p>💰 Savings: ₹{{ insights?.savings }}</p>
+
+    <p>💳 Recommended Payment:
+      {{ insights?.recommendedPayment }}
+    </p>
+
+    <p>🚚 Delivery:
+      {{ insights?.estimatedDelivery }}
+    </p>
+
+    <p>🧠 AI Score:
+      {{ insights?.aiScore }}%</p>
+      
+    <p>✨ {{ insights.recommendation }}</p>   
+
+    <p class="message">
+      {{ insights?.message }}
+    </p>
+
+  </div>
+
+  <button>
+    Proceed with AI Optimized Checkout
+  </button>
+
+</div>

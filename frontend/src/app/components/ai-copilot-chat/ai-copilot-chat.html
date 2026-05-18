@@ -1,0 +1,82 @@
+<section
+  class="copilot-chat"
+  [class.disabled]="disabled"
+  [class.expanded]="expanded"
+  [class.in-modal]="inModal"
+>
+  <header class="chat-header" *ngIf="!inModal">
+    <div class="chat-title-row">
+      <h3>SmartCheckout Copilot</h3>
+      <span class="chat-ai-badge">CHECKOUT AI</span>
+    </div>
+    <p class="chat-subtitle">Optimize savings, delivery & payment for your cart</p>
+  </header>
+
+  <div class="quick-prompts" *ngIf="!disabled">
+    <button
+      type="button"
+      class="prompt-chip"
+      *ngFor="let prompt of quickPrompts"
+      (click)="useQuickPrompt(prompt)"
+      [disabled]="isTyping"
+    >
+      {{ prompt }}
+    </button>
+  </div>
+
+  <div class="chat-body">
+    <div class="messages" #scrollArea role="log" aria-live="polite">
+      <div
+        *ngFor="let msg of messages; let i = index"
+        class="bubble-row"
+        [class.user-row]="msg.role === 'user'"
+        [class.assistant-row]="msg.role === 'assistant'"
+        [style.animation-delay.ms]="i * 40"
+      >
+        <div
+          class="bubble"
+          [class.user-bubble]="msg.role === 'user'"
+          [class.ai-bubble]="msg.role === 'assistant'"
+        >
+          <span *ngIf="msg.role === 'assistant'" class="bubble-label">AI</span>
+          <span *ngIf="msg.role === 'user'" class="bubble-label">You</span>
+          {{ msg.text }}
+        </div>
+      </div>
+
+      <div *ngIf="isTyping" class="bubble-row assistant-row typing-row">
+        <div class="bubble ai-bubble typing-bubble">
+          <span class="bubble-label">AI</span>
+          <span class="typing-text">Thinking</span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+    </div>
+
+    <p *ngIf="chatError" class="chat-error">{{ chatError }}</p>
+
+    <div class="input-row">
+      <input
+        #chatInput
+        type="text"
+        class="chat-input"
+        [(ngModel)]="userInput"
+        (keydown)="onKeydown($event)"
+        placeholder="Ask how to optimize this checkout…"
+        [disabled]="disabled || isTyping"
+        aria-label="Message SmartCheckout Copilot"
+      />
+      <button
+        type="button"
+        class="send-btn"
+        (click)="sendMessage()"
+        [disabled]="disabled || isTyping || !userInput.trim()"
+        aria-label="Send message"
+      >
+        Send
+      </button>
+    </div>
+  </div>
+</section>

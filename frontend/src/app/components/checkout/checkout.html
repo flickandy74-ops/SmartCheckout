@@ -1,0 +1,64 @@
+<div class="bg-white rounded-2xl shadow-lg p-6">
+
+  <h2 class="text-2xl font-bold mb-6">
+    Your Cart
+  </h2>
+
+  <!-- Products -->
+  <div
+    *ngFor="let product of products"
+    class="flex justify-between items-center border-b pb-4 mb-4">
+
+    <div>
+      <h3 class="font-semibold text-lg">
+        {{ product.name }}
+      </h3>
+
+      <p class="text-gray-500">
+        {{ product.description }}
+      </p>
+    </div>
+
+    <div class="font-bold">
+      ₹{{ product.price }}
+    </div>
+
+  </div>
+
+  <!-- Delivery -->
+  <div class="bg-gray-100 p-4 rounded-xl mb-6">
+
+    <h3 class="font-semibold mb-2">
+      Delivery Options
+    </h3>
+
+    <p>
+      Express Delivery: Tomorrow
+    </p>
+
+    <p>
+      Free Delivery: Thursday
+    </p>
+
+  </div>
+
+  <!-- Total -->
+  <div class="flex justify-between text-2xl font-bold mb-6">
+
+    <span>Total</span>
+
+    <span>
+      ₹{{ getTotal() }}
+    </span>
+
+  </div>
+
+  <!-- Button -->
+  <button
+    class="w-full bg-black text-white py-4 rounded-xl hover:opacity-90 transition">
+
+    Proceed to Checkout
+
+  </button>
+
+</div>

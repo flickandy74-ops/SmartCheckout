@@ -1,0 +1,27 @@
+<section class="payment-section">
+  <header class="section-head">
+    <h3>Payment</h3>
+    <span class="secure">🔒 Secure</span>
+  </header>
+
+  <p class="hint" *ngIf="insights">
+    AI recommends <strong>{{ insights.recommendedPayment }}</strong> for this cart (₹{{ total }}).
+  </p>
+
+  <div class="method-grid">
+    <div
+      *ngFor="let m of methods"
+      class="method"
+      [class.recommended]="isRecommended(m.id)"
+    >
+      <span class="icon">{{ m.icon }}</span>
+      <span class="label">{{ m.label }}</span>
+      <span *ngIf="isRecommended(m.id)" class="badge">AI Pick</span>
+      <span *ngIf="m.cashback && isRecommended(m.id)" class="cashback">{{ m.cashback }}</span>
+    </div>
+  </div>
+
+  <div class="providers">
+    <span>Visa</span><span>MC</span><span>GPay</span><span>PhonePe</span><span>Paytm</span>
+  </div>
+</section>

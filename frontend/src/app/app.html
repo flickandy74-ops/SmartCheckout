@@ -1,0 +1,21 @@
+<div class="app-shell">
+  <header class="main-header">
+    <h1>SmartCheckout AI</h1>
+    <p class="tagline">AI checkout copilot — fees, delivery & payment explained in one screen</p>
+  </header>
+
+  <div class="layout">
+    <section class="products-section">
+      <app-product-list />
+    </section>
+    <aside class="cart-section">
+      <app-cart />
+    </aside>
+  </div>
+</div>
+
+<app-order-confirmation
+  [visible]="showConfirmation"
+  [order]="confirmedOrder"
+  (continueShopping)="onContinueShopping()"
+/>

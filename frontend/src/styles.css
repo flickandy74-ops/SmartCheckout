@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  scroll-behavior: smooth;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #eef2ff 50%, #f8f5ff 100%);
+  color: #1a1a2e;
+}
+
+:root {
+  --z-page-content: 0;
+  --z-product-badge: 1;
+  --z-cart-column: 1;
+  --z-modal-overlay: 10000;
+  --z-modal-content: 10001;
+  --z-order-confirmation: 50000;
+  --z-order-confirmation-card: 50001;
+}
+
+body.confirmation-modal-open,
+html.confirmation-modal-open,
+body.app-modal-open,
+html.app-modal-open {
+  overflow: hidden !important;
+  height: 100%;
+  touch-action: none;
+}
+
+body.confirmation-modal-open .main-header,
+body.confirmation-modal-open .products-section,
+body.confirmation-modal-open .layout,
+body.app-modal-open .main-header,
+body.app-modal-open .products-section,
+body.app-modal-open .layout {
+  z-index: var(--z-page-content) !important;
+  position: relative;
+}
+
+body.confirmation-modal-open .product-card,
+body.confirmation-modal-open .ai-tag,
+body.app-modal-open .product-card,
+body.app-modal-open .ai-tag {
+  z-index: auto !important;
+}
+
+body.confirmation-modal-open .cart-section,
+body.app-modal-open .cart-section {
+  z-index: var(--z-cart-column);
+  position: relative;
+}
+
+app-order-confirmation {
+  position: relative;
+  z-index: var(--z-order-confirmation);
+}

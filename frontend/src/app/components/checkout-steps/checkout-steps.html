@@ -1,0 +1,12 @@
+<nav class="steps" aria-label="Checkout progress">
+  <div
+    *ngFor="let step of steps; let last = last"
+    class="step-item"
+    [class.active]="isActive(step.id)"
+    [class.done]="isDone(step.id)"
+  >
+    <span class="step-dot">{{ isDone(step.id) ? '✓' : '' }}</span>
+    <span class="step-label">{{ step.label }}</span>
+    <span *ngIf="!last" class="step-line"></span>
+  </div>
+</nav>

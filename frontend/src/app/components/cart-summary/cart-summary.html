@@ -1,0 +1,28 @@
+<section class="cart-summary">
+  <header class="section-head">
+    <h3>Cart Summary</h3>
+    <span class="count">{{ cartItems.length }} item(s)</span>
+  </header>
+
+  <div *ngIf="cartItems.length === 0" class="empty">Cart is empty</div>
+
+  <div class="items-scroll" *ngIf="cartItems.length > 0">
+    <div *ngFor="let item of cartItems" class="line">
+      <img [src]="item.node?.images?.edges?.[0]?.node?.url" alt="" />
+      <div class="meta">
+        <span class="title">{{ item.node?.title }}</span>
+        <span class="price">₹{{ item.node?.variants?.edges?.[0]?.node?.price?.amount }}</span>
+      </div>
+      <button type="button" class="rm" (click)="removeItem(item)" aria-label="Remove">×</button>
+    </div>
+  </div>
+
+  <div *ngIf="cartItems.length > 0" class="totals">
+    <div class="row"><span>Subtotal</span><span>₹{{ total }}</span></div>
+    <div class="row save highlight-savings" *ngIf="savings > 0">
+      <span>AI savings</span>
+      <span class="savings-amount">−₹{{ savings }}</span>
+    </div>
+    <div class="row grand"><span>Total</span><span>₹{{ total }}</span></div>
+  </div>
+</section>

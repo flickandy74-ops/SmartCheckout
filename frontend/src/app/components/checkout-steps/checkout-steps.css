@@ -1,0 +1,72 @@
+.steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  border: 1px solid #e8e8f5;
+  margin-bottom: 10px;
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  padding: 0 8px;
+}
+
+.step-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  background: white;
+  transition: all 0.25s ease;
+}
+
+.step-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #888;
+  transition: color 0.25s ease;
+}
+
+.step-line {
+  width: 28px;
+  height: 2px;
+  background: #ddd;
+  margin-left: 4px;
+}
+
+.step-item.active .step-dot {
+  border-color: #6c63ff;
+  background: linear-gradient(135deg, #6c63ff, #8b5cf6);
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+}
+
+.step-item.active .step-label {
+  color: #6c63ff;
+}
+
+.step-item.done .step-dot {
+  border-color: #28a745;
+  background: #28a745;
+  color: white;
+}
+
+.step-item.done .step-label {
+  color: #28a745;
+}
+
+.step-item.done + .step-item .step-line,
+.step-item.done .step-line {
+  background: #28a745;
+}

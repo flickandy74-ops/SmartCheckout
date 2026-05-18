@@ -1,0 +1,72 @@
+<div class="overlay" *ngIf="open" (click)="close()">
+  <div class="modal" (click)="$event.stopPropagation()" [class.success-state]="paymentSuccess">
+    <header class="modal-head">
+      <h2>Secure payment</h2>
+      <button type="button" class="close" (click)="close()" [disabled]="processing">×</button>
+    </header>
+
+    <p class="amount">Pay <strong>₹{{ total }}</strong></p>
+
+    <div class="methods">
+      <button
+        type="button"
+        *ngFor="let m of methods"
+        class="method-btn"
+        [class.active]="selectedMethod === m.id"
+        [class.rec]="isRecommended(m.id)"
+        (click)="selectMethod(m.id)"
+        [disabled]="processing"
+      >
+        <span>{{ m.icon }}</span> {{ m.label }}
+        <span *ngIf="isRecommended(m.id)" class="rec-tag">Recommended</span>
+      </button>
+    </div>
+
+    <div class="form" *ngIf="selectedMethod === 'upi' && !paymentSuccess">
+      <label>UPI ID</label>
+      <input [(ngModel)]="upiId" placeholder="yourname@upi" [disabled]="processing" />
+    </div>
+
+    <div class="form card-form" *ngIf="selectedMethod === 'card' && !paymentSuccess">
+      <label>Card number</label>
+      <input [(ngModel)]="cardNumber" [disabled]="processing" />
+      <label>Name on card</label>
+      <input [(ngModel)]="cardName" [disabled]="processing" />
+      <div class="row-inputs">
+        <div><label>Expiry</label><input [(ngModel)]="cardExpiry" [disabled]="processing" /></div>
+        <div><label>CVV</label><input [(ngModel)]="cardCvv" type="password" [disabled]="processing" /></div>
+      </div>
+    </div>
+
+    <div class="form" *ngIf="selectedMethod === 'wallet' && !paymentSuccess">
+      <p class="wallet-note">Pay instantly with SmartWallet (demo)</p>
+    </div>
+
+    <div class="form" *ngIf="selectedMethod === 'netbanking' && !paymentSuccess">
+      <label>Bank</label>
+      <select><option>HDFC Bank (demo)</option></select>
+    </div>
+
+    <div *ngIf="processing && !paymentSuccess" class="loader">
+      <div class="spinner"></div>
+      <p>Processing payment…</p>
+    </div>
+
+    <div *ngIf="paymentSuccess" class="pay-success">
+      <div class="check">✓</div>
+      <p>Payment successful!</p>
+    </div>
+
+    <button
+      type="button"
+      class="pay-btn"
+      *ngIf="!paymentSuccess"
+      (click)="pay()"
+      [disabled]="processing"
+    >
+      {{ processing ? 'Processing…' : 'Pay ₹' + total }}
+    </button>
+
+    <p class="secure-note">🔒 256-bit encrypted · PCI compliant (demo)</p>
+  </div>
+</div>

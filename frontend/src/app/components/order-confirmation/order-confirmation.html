@@ -1,0 +1,50 @@
+<div
+  class="confirmation-backdrop"
+  *ngIf="visible && order"
+  [class.closing]="isClosing"
+  (click)="onOverlayClick()"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="confirmation-title"
+>
+  <div class="confirmation-card" (click)="$event.stopPropagation()" [class.closing]="isClosing">
+    <button
+      type="button"
+      class="close-btn"
+      (click)="onCloseClick($event)"
+      aria-label="Close confirmation"
+    >
+      ×
+    </button>
+
+    <div class="success-icon">✓</div>
+    <h2 id="confirmation-title">Order confirmed</h2>
+    <p class="order-id">Order #{{ order.orderId }}</p>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="label">Amount paid</span>
+        <span class="value">₹{{ order.total }}</span>
+      </div>
+      <div class="stat">
+        <span class="label">Delivery</span>
+        <span class="value">{{ order.delivery }}</span>
+      </div>
+      <div class="stat highlight">
+        <span class="label">You saved</span>
+        <span class="value">₹{{ order.savings }}</span>
+      </div>
+    </div>
+
+    <div class="ai-box">
+      <span class="ai-label">AI optimization summary</span>
+      <p>{{ order.aiSummary }}</p>
+    </div>
+
+    <p class="rec">{{ order.recommendation }}</p>
+
+    <button type="button" class="continue-btn" (click)="onContinue()">
+      Continue shopping
+    </button>
+  </div>
+</div>

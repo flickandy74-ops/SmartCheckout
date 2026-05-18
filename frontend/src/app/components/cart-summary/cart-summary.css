@@ -1,0 +1,125 @@
+.cart-summary {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #ebebf5;
+  padding: 12px 14px;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.section-head h3 {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #444;
+}
+
+.count {
+  font-size: 10px;
+  color: #888;
+  background: #f3f3ff;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.empty {
+  font-size: 12px;
+  color: #999;
+  padding: 8px 0;
+}
+
+.items-scroll {
+  max-height: 140px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+.line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid #f2f2f8;
+}
+
+.line img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #fafafa;
+}
+
+.meta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.price {
+  font-size: 11px;
+  color: #6c63ff;
+  font-weight: 700;
+}
+
+.rm {
+  border: none;
+  background: #ffe8e8;
+  color: #e44;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.totals .row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  padding: 2px 0;
+  color: #666;
+}
+
+.totals .row.highlight-savings {
+  margin: 4px 0;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #e8f8ec, #f6fff8);
+  border: 1px solid #b8e6c4;
+  font-size: 12px;
+  font-weight: 700;
+  color: #1e6b32;
+}
+
+.totals .row.highlight-savings .savings-amount {
+  color: #1e7a34;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.totals .grand {
+  font-size: 13px;
+  font-weight: 800;
+  color: #111;
+  border-top: 1px solid #eee;
+  margin-top: 4px;
+  padding-top: 6px;
+}

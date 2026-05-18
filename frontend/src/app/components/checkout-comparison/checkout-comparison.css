@@ -1,0 +1,73 @@
+.comparison h3 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #555;
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.col {
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 11px;
+}
+
+.col .tag {
+  display: block;
+  font-weight: 800;
+  margin-bottom: 4px;
+  font-size: 9px;
+  text-transform: uppercase;
+}
+
+.col ul {
+  margin: 0;
+  padding-left: 14px;
+  line-height: 1.4;
+  color: #666;
+}
+
+.col.standard {
+  background: #f5f5f5;
+  border: 1px solid #e8e8e8;
+}
+
+.col.standard .tag {
+  color: #888;
+}
+
+.col.ai {
+  background: linear-gradient(135deg, #eef0ff, #fff);
+  border: 1px solid #d8d4ff;
+}
+
+.col.ai.highlight-path {
+  border-width: 1.5px;
+  border-color: #6c63ff;
+}
+
+.col.ai .tag {
+  color: #6c63ff;
+  font-size: 10px;
+}
+
+.col.ai ul {
+  color: #444;
+}
+
+.col.ai .path-lead {
+  font-weight: 700;
+  color: #5a52e0;
+}
+
+.col.ai .path-savings {
+  font-weight: 800;
+  color: #1e7a34;
+}
