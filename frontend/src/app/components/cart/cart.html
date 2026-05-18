@@ -36,18 +36,11 @@
       <div *ngIf="insights && !insightsLoading" class="ai-feature-stack">
         <p class="showcase-eyebrow">AI-powered checkout</p>
 
-        <section class="ai-insights">
-          <h3>AI Insights</h3>
-          <div class="insight-row">
-            <span class="insight-chip insight-savings">💰 ₹{{ insights.savings }} saved</span>
-            <span class="insight-chip">💳 {{ insights.recommendedPayment }}</span>
-            <span class="insight-chip">🚚 {{ insights.estimatedDelivery }}</span>
-            <span class="insight-chip">🧠 {{ insights.aiScore }}% score</span>
-          </div>
-          <div class="score-bar">
-            <div class="score-fill" [style.width.%]="insights.aiScore"></div>
-          </div>
-        </section>
+        <app-ai-insights
+          [insights]="insights"
+          [cartTotal]="getTotalPrice()"
+          [itemCount]="cartItems.length"
+        />
 
         <app-checkout-comparison
           class="feature-comparison"

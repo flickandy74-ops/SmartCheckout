@@ -14,6 +14,7 @@ import { AiCopilotChat } from '../ai-copilot-chat/ai-copilot-chat';
 import { CheckoutSteps } from '../checkout-steps/checkout-steps';
 import { CartSummary } from '../cart-summary/cart-summary';
 import { CheckoutComparison } from '../checkout-comparison/checkout-comparison';
+import { AiInsights } from '../ai-insights/ai-insights';
 import { PaymentModal } from '../payment-modal/payment-modal';
 
 @Component({
@@ -24,6 +25,7 @@ import { PaymentModal } from '../payment-modal/payment-modal';
     AiCopilotChat,
     CheckoutSteps,
     CartSummary,
+    AiInsights,
     CheckoutComparison,
     PaymentModal
   ],

@@ -1,40 +1,17 @@
-<div class="ai-panel">
+<section class="ai-insights" *ngIf="insights">
+  <h3>AI Insights</h3>
+  <p class="smart-insight">{{ smartInsightLine }}</p>
 
-  <div class="top">
-
-    <h2>AI Checkout Copilot</h2>
-
-    <span class="badge">
-      AI ACTIVE
+  <div class="insight-row">
+    <span class="insight-chip insight-savings" *ngIf="chips.savings">
+      💰 {{ chips.savings }}
     </span>
-
+    <span class="insight-chip">💳 {{ chips.payment }}</span>
+    <span class="insight-chip">🚚 {{ chips.delivery }}</span>
+    <span class="insight-chip">🧠 {{ chips.score }}</span>
   </div>
 
-  <div class="insight">
-
-    <p>💰 Savings: ₹{{ insights?.savings }}</p>
-
-    <p>💳 Recommended Payment:
-      {{ insights?.recommendedPayment }}
-    </p>
-
-    <p>🚚 Delivery:
-      {{ insights?.estimatedDelivery }}
-    </p>
-
-    <p>🧠 AI Score:
-      {{ insights?.aiScore }}%</p>
-      
-    <p>✨ {{ insights.recommendation }}</p>   
-
-    <p class="message">
-      {{ insights?.message }}
-    </p>
-
+  <div class="score-bar">
+    <div class="score-fill" [style.width.%]="insights.aiScore"></div>
   </div>
-
-  <button>
-    Proceed with AI Optimized Checkout
-  </button>
-
-</div>
+</section>
