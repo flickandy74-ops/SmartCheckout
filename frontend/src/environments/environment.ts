@@ -9,6 +9,6 @@ export const environment = {
     '302a6cd6b6848b4dcb371df0fe8ad809',
 
   apiUrl:
-    'http://localhost:5009/api'
+   'https://smartcheckout-api.onrender.com/api'
 
 };
